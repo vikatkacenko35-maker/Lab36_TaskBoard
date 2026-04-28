@@ -34,7 +34,10 @@ public class TasksController : ControllerBase
     public async Task<ActionResult<TaskItem>> Create([FromBody] TaskItem task)
     {
         if (string.IsNullOrWhiteSpace(task.Title))
+        {
             return BadRequest(new { Message = "Поле обязательно для заполениния" });
+        }
+            
         task.Id = 0;
         task.IsCompleted = false;
         task.CreatedAt = DateTime.UtcNow;
